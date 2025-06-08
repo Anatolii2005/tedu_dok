@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Профиль</h2>
+
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert alert-{{ msg.tags }}">{{ msg }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label class="form-label" for="id_name">Имя</label>
+      {{ form.name|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="id_phone">Телефон</label>
+      {{ form.phone|add_class:"form-control" }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+  </form>
+</div>
+{% endblock %}
+

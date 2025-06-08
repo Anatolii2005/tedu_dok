@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+{% block title %}Добавить симптом{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Добавить симптом</h2>
+
+  {% if form.errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="id_title" class="form-label">Название</label>
+      {{ form.title|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_description" class="form-label">Описание</label>
+      {{ form.description|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_intensity" class="form-label">Интенсивность</label>
+      {{ form.intensity|add_class:"form-select" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_image" class="form-label">Фото</label>
+      {{ form.image|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_audio" class="form-label">Аудио</label>
+      {{ form.audio|add_class:"form-control" }}
+    </div>
+
+    <button class="btn btn-primary" type="submit">Сохранить</button>
+  </form>
+</div>
+{% endblock %}
+

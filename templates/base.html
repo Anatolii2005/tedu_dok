@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}TEDU DOK{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Иконки Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg,rgb(205, 227, 255),rgb(171, 198, 255));
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            background-color:rgb(255, 255, 255);
+            border-right: 1px solid #ddd;
+            height: 100vh;
+            padding-top: 30px;
+        }
+
+        .sidebar .nav-link {
+            color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color:rgb(255, 255, 255);
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        .content-area {
+            padding: 30px;
+        }
+
+        .btn-primary {
+            background-color: #3165d4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #234ca8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Сайдбар -->
+        <div class="col-md-3 col-lg-2 sidebar">
+            <h4 class="text-center mb-4">TEDU DOK</h4>
+            <nav class="nav flex-column">
+                <a href="{% url 'dashboard' %}" class="nav-link"><i class="bi bi-house-door"></i> Главная</a>
+                <a href="{% url 'profile' %}" class="nav-link"><i class="bi bi-person-gear"></i> Профиль</a>
+                <a href="{% url 'add_symptom' %}" class="nav-link"><i class="bi bi-plus-circle"></i> Добавить симптом</a>
+                <a href="{% url 'view_symptoms' %}" class="nav-link"><i class="bi bi-clipboard2-pulse"></i> Мои симптомы</a>
+                <a href="{% url 'add_diagnosis' %}" class="nav-link"><i class="bi bi-clipboard-plus"></i> Добавить диагноз</a>
+                <a href="{% url 'view_diagnoses' %}" class="nav-link"><i class="bi bi-heart-pulse"></i> История диагнозов</a>
+                <a href="{% url 'add_reminder' %}" class="nav-link"><i class="bi bi-alarm"></i> Напоминание</a>
+                <a href="{% url 'view_reminders' %}" class="nav-link"><i class="bi bi-clock-history"></i> Мои приёмы</a>
+                <a href="{% url 'logout' %}" class="nav-link text-danger"><i class="bi bi-box-arrow-right"></i> Выход</a>
+            </nav>
+        </div>
+
+        <!-- Контент -->
+        <div class="col-md-9 col-lg-10 content-area">
+            {% block content %}
+            <!-- Здесь будет меняться содержимое -->
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (необязательно) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

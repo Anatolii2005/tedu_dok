@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+{% block title %}Добавить диагноз{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Добавить диагноз</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="id_diagnosis" class="form-label">Диагноз</label>
+      {{ form.diagnosis|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_treatment" class="form-label">Лечение</label>
+      {{ form.treatment|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_doctor_notes" class="form-label">Заметки врача</label>
+      {{ form.doctor_notes|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_image" class="form-label">Фото</label>
+      {{ form.image|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_audio" class="form-label">Аудио</label>
+      {{ form.audio|add_class:"form-control" }}
+    </div>
+
+    <button class="btn btn-primary" type="submit">Сохранить</button>
+  </form>
+</div>
+{% endblock %}
+

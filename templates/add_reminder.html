@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+{% block title %}Добавить напоминание{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Добавить лекарство</h2>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="id_medication_name" class="form-label">Название лекарства</label>
+      {{ form.medication_name|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_dosage" class="form-label">Дозировка</label>
+      {{ form.dosage|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_intake_time" class="form-label">Время приёма</label>
+      {{ form.intake_time|add_class:"form-control" }}
+    </div>
+
+    <button class="btn btn-primary">Сохранить</button>
+  </form>
+</div>
+{% endblock %}

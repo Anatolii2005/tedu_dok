@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Добро пожаловать, {{ user_name }}!</h2>
+
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Добавить симптом</h5>
+          <p class="card-text">Запиши, как ты себя чувствуешь.</p>
+          <a href="{% url 'add_symptom' %}" class="btn btn-primary">Добавить</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">История симптомов</h5>
+          <p class="card-text">Просмотри свои записи.</p>
+          <a href="{% url 'view_symptoms' %}" class="btn btn-outline-primary">Открыть</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Медицинская история</h5>
+          <p class="card-text">Добавь диагноз или лечение.</p>
+          <a href="{% url 'view_diagnoses' %}" class="btn btn-outline-primary">Посмотреть</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Напоминания</h5>
+          <p class="card-text">Трекер приёма лекарств.</p>
+          <a href="{% url 'view_reminders' %}" class="btn btn-outline-primary">Открыть</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Редактировать профиль</h5>
+          <p class="card-text">Обнови своё имя или телефон.</p>
+          <a href="{% url 'profile' %}" class="btn btn-outline-secondary">Редактировать</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

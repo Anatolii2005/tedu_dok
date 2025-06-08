@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Мои симптомы{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Мои симптомы</h2>
+
+  {% if symptoms %}
+    <div class="row">
+      {% for s in symptoms %}
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card shadow-sm h-100">
+            {% if s.image %}
+              <img src="{{ s.image.url }}" class="card-img-top" alt="Фото симптома">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ s.title }}</h5>
+              <p class="card-text">{{ s.description }}</p>
+              <p><strong>Интенсивность:</strong> {{ s.intensity }}</p>
+              <p><strong>Дата:</strong> {{ s.date }}</p>
+              {% if s.audio %}
+                <audio controls src="{{ s.audio.url }}"></audio>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">Симптомы не найдены.</div>
+  {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Мои напоминания{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Трекер приёма лекарств</h2>
+
+  {% if reminders %}
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Название</th>
+          <th>Дозировка</th>
+          <th>Время приёма</th>
+          <th>Осталось</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in reminders %}
+        <tr>
+          <td>{{ r.medication_name }}</td>
+          <td>{{ r.dosage }}</td>
+          <td>{{ r.intake_time }}</td>
+          <td><span class="countdown" data-time="{{ r.intake_time|date:'Y-m-d\\TH:i:s' }}"></span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">Пока нет напоминаний.</div>
+  {% endif %}
+
+  <script>
+    function updateCountdowns() {
+      const now = new Date().getTime();
+      document.querySelectorAll('.countdown').forEach(el => {
+        const target = new Date(el.dataset.time).getTime();
+        const diff = target - now;
+        if (diff <= 0) {
+          el.innerHTML = '<span class="text-danger fw-bold">Пора принять!</span>';
+          if (!el.classList.contains('notified')) {
+            new Audio('https://www.soundjay.com/buttons/sounds/beep-07.mp3').play();
+            el.classList.add('notified');
+          }
+        } else {
+          const mins = Math.floor(diff / 60000);
+          const secs = Math.floor((diff % 60000) / 1000);
+          el.innerText = `${mins} мин ${secs} сек`;
+        }
+      });
+    }
+    setInterval(updateCountdowns, 1000);
+  </script>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}История диагнозов{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">История диагнозов</h2>
+
+  {% if history %}
+    <div class="row">
+      {% for d in history %}
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card shadow-sm h-100">
+            {% if d.image %}
+              <img src="{{ d.image.url }}" class="card-img-top" alt="Фото">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ d.diagnosis }}</h5>
+              <p><strong>Лечение:</strong> {{ d.treatment }}</p>
+              <p><strong>Заметки:</strong> {{ d.doctor_notes }}</p>
+              <p><strong>Дата:</strong> {{ d.date }}</p>
+              {% if d.audio %}
+                <audio controls src="{{ d.audio.url }}"></audio>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">Диагнозы не найдены.</div>
+  {% endif %}
+</div>
+{% endblock %}
+
